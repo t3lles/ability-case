@@ -1,0 +1,26 @@
+services:
+  ticket_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "1q2w3e4r@#$"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1434:1433"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P '1q2w3e4r@#$' -Q 'SELECT 1' -No"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  ticket_api:
+    build:
+      context: ./src/Ability.Api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+      ticket_db:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=ticket_db,1433;Database=AbilityTickets;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=True;"
