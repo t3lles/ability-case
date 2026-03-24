@@ -2,6 +2,10 @@
 
 Este projeto é uma solução fullstack desenvolvida para o gerenciamento de chamados técnicos internos, como parte do desafio técnico para a **Ability Tecnologia**. A aplicação permite a abertura, listagem e conclusão de tickets de suporte de forma rápida e resiliente.
 
+ ## 📸 Preview
+    
+    ![abilityCase-screenshot](https://github.com/user-attachments/assets/39dbcb39-e40e-4b63-a697-d95ce0a4e903)
+
 ## 🚀 Diferenciais de Implementação
 
 * **Resiliência de Infraestrutura:** Implementação de `healthchecks` no Docker Compose, garantindo que a API só inicie após o banco de dados SQL Server estar totalmente pronto para conexões.
